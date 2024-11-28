@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.rowset.CachedRowSet;
 
+
 import dev.j.App;
 import dev.sol.db.DBParam;
 import dev.sol.db.DBService;
@@ -85,6 +86,9 @@ public class MemberDAO {
         return list;
     }
 
+    public static void insert(Member member){
+    DB.insert(TABLE, paramlist(member));
+    }
     public static void delete(Member member){
         DB.delete(TABLE, new DBParam(Types.INTEGER, "memberID", member.getMemberId()));
     }

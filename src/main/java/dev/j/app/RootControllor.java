@@ -13,8 +13,10 @@ import dev.sol.core.application.FXController;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.print.PrintColor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -41,27 +43,79 @@ public class RootControllor extends FXController {
     private TextField fnameField;
 
     @FXML
+    private TextField mnameField;
+
+    @FXML
+    private TextField lnameField;
+
+    @FXML 
+    private TextField bdayField;
+
+    @FXML
+    private TextField placeField;
+
+    @FXML
+    private TextField homeField;
+
+    @FXML
+    private TextField occupationField;
+
+    @FXML
+    private TextField  salaryField;
+
+    @FXML
+    private TextField incomeField;
+
+    @FXML
+    private TextField relative;
+
+    @FXML
+    private TextField stockshareField;
+
+    @FXML
+    private TextField dependentField;
+
+    @FXML
+    private ComboBox civilBox;
+
+    @FXML
+    private ComboBox officeComboBox;
+
+
+    @FXML
+    private ComboBox relationBox;
+
+
+
+
+
+
+
+    @FXML
     private void handleAddMember(){
         if (fnameField.getText().isEmpty()) {
             fnameField.pseudoClassStateChanged(Styles.STATE_DANGER, true);
             Animations.flash(fnameField).playFromStart();
             return;
         }
-        Collections.sort(member_masterlist, Comparator.comparing(Member::getEmpID));
-        int id_int = Integer.parseInt( member_masterlist.getLast().getMemberId()) + 1;
-        String emp_id = Integer.toString(id_int);
+        Collections.sort(member_masterlist, Comparator.comparing(Member::getMemberId));
+        int id_int = Integer.valueOf(member_masterlist.getLast().getMemberId()) + 1;
+        String memberId = Integer.toString(id_int);
 
-        Employee employee = new Employee(emp_id,
-                nameField.getText(),
-                jobField.getValue(),
-                managerField.getValue(),
-                departmentField.getValue());
-        EmployeeDAO.insert(employee);
-        employee_masterlist.add(employee);
+        Member member = new Member(memberId,
+        fnameField.getText(),
+        mnameField.getText(),
+        lnameField.getText(),
+        bdayField.getText(),
+        placeField.getText(),
+        );
+
+        MemberDAO.insert(member);
+        member_masterlist.add(member);
         reset_newEmployeeFields();
     }
 
-    }
+    
 
     @FXML
     private void handleSave(){
@@ -112,6 +166,10 @@ public class RootControllor extends FXController {
     @Override
     protected void load_listeners() {
        
+    }
+
+    private void reset_newEmployeeFields() {
+        fnameField.setText("");
     }
     
 }
