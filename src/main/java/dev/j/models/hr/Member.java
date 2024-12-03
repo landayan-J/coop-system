@@ -1,41 +1,44 @@
-package dev.j.models;
+package dev.j.models.hr;
 
 
 
+import dev.j.enums.CivilStatus;
 import dev.sol.core.application.FXModel;
 import dev.sol.core.properties.beans.FXDoubleProperty;
 import dev.sol.core.properties.beans.FXIntegerProperty;
 import dev.sol.core.properties.beans.FXLongProperty;
+import dev.sol.core.properties.beans.FXObjectProperty;
 import dev.sol.core.properties.beans.FXStringProperty;
 
 public class Member extends FXModel {
-    private FXIntegerProperty memberId;
-    private FXStringProperty Fname;
-    private FXStringProperty Mname;
-    private FXStringProperty Lname;
-    private FXStringProperty DateofBirth;
-    private FXStringProperty PlaceofBirth;
-    private FXIntegerProperty Status;
-    private FXStringProperty CurrentAddress;
-    private FXStringProperty Occupation;
-    private FXIntegerProperty Office;
-    private FXDoubleProperty Salary;
-    private FXStringProperty Sourceofincome;
-    private FXStringProperty Nearestrelative;
-    private FXStringProperty RelationShip;
-    private FXStringProperty Dependent;
-    private FXIntegerProperty Stockshare;
-    private FXLongProperty StockAmount;
-    private FXIntegerProperty StockPaid;
-    private FXLongProperty amountpaid;
+    
+    private final FXIntegerProperty memberid;
+    private final FXStringProperty Fname;
+    private final FXStringProperty Mname;
+    private final FXStringProperty Lname;
+    private final FXStringProperty DateofBirth;
+    private final FXStringProperty PlaceofBirth;
+    private final FXObjectProperty<CivilStatus> Status;
+    private final FXStringProperty CurrentAddress;
+    private final FXStringProperty Occupation;
+    private final FXIntegerProperty Office;
+    private final FXDoubleProperty Salary;
+    private final FXStringProperty Sourceofincome;
+    private final FXStringProperty Nearestrelative;
+    private final FXStringProperty RelationShip;
+    private final FXStringProperty Dependent;
+    private final FXIntegerProperty Stockshare;
+    private final FXLongProperty StockAmount;
+    private final FXIntegerProperty StockPaid;
+    private final FXLongProperty amountpaid;
 
-    public Member(Integer memberId,
+    public Member(Integer memberid,
             String Fname,
             String Mname,
             String Lname,
             String DateofBirth,
             String PlaceofBirth,
-            Integer Status,
+            CivilStatus Status,
             String CurrentAddress,
             String Occupation,
             Integer Office,
@@ -49,13 +52,13 @@ public class Member extends FXModel {
             Integer StockPaid,
             long amountpaid) {
 
-        this.memberId = new FXIntegerProperty(memberId);
+       this.memberid = new FXIntegerProperty(memberid);
         this.Fname = new FXStringProperty(Fname);
         this.Mname = new FXStringProperty(Mname);
         this.Lname = new FXStringProperty(Lname);
         this.DateofBirth = new FXStringProperty(DateofBirth);
         this.PlaceofBirth = new FXStringProperty(PlaceofBirth);
-        this.Status = new FXIntegerProperty(Status);
+        this.Status = new FXObjectProperty<>(Status);
         this.CurrentAddress = new FXStringProperty(CurrentAddress);
         this.Occupation = new FXStringProperty(Occupation);
         this.Office = new FXIntegerProperty(Office);
@@ -69,7 +72,7 @@ public class Member extends FXModel {
         this.StockPaid = new FXIntegerProperty(StockPaid);
         this.amountpaid = new FXLongProperty(amountpaid);
 
-        track_properties(this.memberId,
+        track_properties(this.memberid,
                 this.Fname,
                 this.Mname,
                 this.Lname,
@@ -90,16 +93,16 @@ public class Member extends FXModel {
                 this.amountpaid);
     }
 
-    public FXIntegerProperty memberIdProperty() {
-        return memberId;
+    public FXIntegerProperty memberIDProperty() {
+        return memberid;
     }
 
-    public Integer getMemberId() {
-        return memberIdProperty().get();
+    public Integer getMemberID() {
+        return memberIDProperty().get();
     }
 
-    public void setMemberId(Integer memberId) {
-        memberIdProperty().set(memberId);
+    public void setMemberID(Integer memberid) {
+        memberIDProperty().set(memberid);
     }
 
     public FXStringProperty fnameProperty() {
@@ -162,15 +165,15 @@ public class Member extends FXModel {
         placeofBirthProperty().set(getDateofBirth());
     }
 
-    public FXIntegerProperty statusProperty() {
+    public FXObjectProperty<CivilStatus> statusProperty() {
         return Status;
     }
 
-    public Integer getStatus() {
+    public CivilStatus getStatus() {
         return statusProperty().get();
     }
 
-    public void setStatus(Integer Status) {
+    public void setStatus(CivilStatus Status) {
         statusProperty().set(Status);
     }
 
@@ -321,32 +324,16 @@ public class Member extends FXModel {
     @Override
     public FXModel clone() {
 
-        return new Member(getMemberId(),
-                getFname(),
-                getMname(),
-                getLname(),
-                getDateofBirth(),
-                getPlaceofBirth(),
-                getStatus(),
-                getCurrentAddress(),
-                getOccupation(),
-                getOffice(),
-                getSalary(),
-                getSourceofincome(),
-                getNearestRelative(),
-                getRelationShip(),
-                getDependent(),
-                getStockshare(),
-                getStockAmount(),
-                getStockPaid(),
-                getAmountPaid());
-    }
+        Member member = new Member(getMemberID(), getFname(), getMname(), getLname(), getDateofBirth(), getPlaceofBirth(), getStatus(), getCurrentAddress(), getOccupation(), getOffice(), getSalary(), getSourceofincome(), getNearestRelative(), getRelationShip(), getDependent(), getStockshare(), getStockAmount(), getStockPaid(), getAmountPaid());
+        return member;
+
+}
 
     @Override
     public void copy(FXModel arg0) {
         Member c = (Member) arg0;
 
-        setMemberId(c.getMemberId());
+        setMemberID(c.getMemberID());
         setFname(c.getFname());
         setMname(c.getMname());
         setLname(c.getLname());
@@ -365,12 +352,5 @@ public class Member extends FXModel {
         setStockshare(c.getStockshare());
         setStockAmount(c.getStockAmount());
         setStockPaid(c.getStockPaid());
-
     }
-
-    public Object getmemberProperty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getmemberProperty'");
-    }
-
 }

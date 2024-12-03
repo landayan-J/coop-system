@@ -1,7 +1,5 @@
 package dev.j.data;
 
-import dev.j.models.Member;
-
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.LinkedList;
@@ -11,6 +9,8 @@ import javax.sql.rowset.CachedRowSet;
 
 
 import dev.j.App;
+import dev.j.enums.CivilStatus;
+import dev.j.models.hr.Member;
 import dev.sol.db.DBParam;
 import dev.sol.db.DBService;
 
@@ -26,7 +26,7 @@ public class MemberDAO {
             String Lname = crs.getString("Lname");
             String DateofBirth = crs.getString("DateofBirth");
             String PlaceofBirth = crs.getString("PlaceofBirth");
-            Integer Status = crs.getInt("Status");
+            CivilStatus Status = CivilStatus.values()[crs.getInt("Status")];
             String CurrentAddress = crs.getString("CurrentAddress");
             String Occupation = crs.getString("Occupation");
             Integer Office = crs.getInt("OfficeID");
@@ -49,7 +49,7 @@ public class MemberDAO {
 
     private static DBParam[] paramlist(Member member){
         List<DBParam> paramlist = new LinkedList<>();
-        paramlist.add(new DBParam(Types.INTEGER, "memberID",member.getMemberId()));
+        paramlist.add(new DBParam(Types.INTEGER, "memberID",member.getMemberID()));
         paramlist.add(new DBParam(Types.VARCHAR, "Fname",member.getFname()));
         paramlist.add(new DBParam(Types.VARCHAR, "Lname",member.getLname()));
         paramlist.add(new DBParam(Types.VARCHAR, "DateofBirth", member.getDateofBirth()));
@@ -90,7 +90,7 @@ public class MemberDAO {
     DB.insert(TABLE, paramlist(member));
     }
     public static void delete(Member member){
-        DB.delete(TABLE, new DBParam(Types.INTEGER, "memberID", member.getMemberId()));
+        DB.delete(TABLE, new DBParam(Types.INTEGER, "memberID", member.getMemberID()));
     }
 
     

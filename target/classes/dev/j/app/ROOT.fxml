@@ -77,26 +77,26 @@
                         <Insets />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="Middle Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField promptText="Last Name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="mnameField" promptText="Middle Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="lnameField" promptText="Last Name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
                         <Label text="BirthDate" />
                         <Region prefHeight="30.0" prefWidth="12.0" />
-                        <TextField prefHeight="25.0" prefWidth="74.0" promptText="Birthdate" />
+                        <TextField fx:id="bdayField" prefHeight="25.0" prefWidth="74.0" promptText="Birthdate" />
                      </children>
                   </HBox>
                   <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Birth Place" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <TextField promptText="Birth Place" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="placeField" promptText="Birth Place" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
                         <Label text="Civil Status" />
                         <Region prefHeight="30.0" prefWidth="14.0" />
-                        <ComboBox prefHeight="25.0" prefWidth="65.0" promptText="Civil Status" />
+                        <ComboBox fx:id="civilBox" prefHeight="25.0" prefWidth="65.0" promptText="Civil Status" />
                      </children>
                   </HBox>
                   <Label text="Home Address" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                  <TextField promptText="Home Address" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="homeField" promptText="Home Address" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <Region prefHeight="11.0" prefWidth="453.0" />
@@ -113,7 +113,7 @@
                      <children>
                         <Label text="Occupation" />
                         <Region prefHeight="30.0" prefWidth="7.0" />
-                        <TextField prefHeight="25.0" prefWidth="379.0" promptText="Job" />
+                        <TextField fx:id="occupationField" prefHeight="25.0" prefWidth="379.0" promptText="Job" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -139,21 +139,21 @@
                      <children>
                         <Label text="Salary" />
                         <Region prefHeight="30.0" prefWidth="36.0" />
-                        <TextField prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
+                        <TextField fx:id="salaryField" prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
                         <Label text="Income" />
                         <Region prefHeight="30.0" prefWidth="36.0" />
-                        <TextField prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
+                        <TextField fx:id="incomeField" prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
                         <Label text="Relative" />
                         <Region prefHeight="30.0" prefWidth="36.0" />
-                        <TextField prefHeight="25.0" prefWidth="126.0" promptText="Relative" />
+                        <TextField fx:id="relative" prefHeight="25.0" prefWidth="126.0" promptText="Relative" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -177,7 +177,7 @@
                      <children>
                         <Label text="Dependents" />
                         <Region prefHeight="30.0" prefWidth="20.0" />
-                        <TextField prefHeight="25.0" prefWidth="364.0" promptText="Job" text="List of Dependents" />
+                        <TextField fx:id="dependentField" prefHeight="25.0" prefWidth="364.0" promptText="Job" text="List of Dependents" />
                      </children>
                   </HBox>
                </children>
@@ -197,28 +197,28 @@
                      <children>
                         <Label text="Stock Share" />
                         <Region prefHeight="30.0" prefWidth="20.0" />
-                        <TextField prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
+                        <TextField fx:id="stockshareField" prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
                         <Label text="Stock Paid" />
                         <Region prefHeight="30.0" prefWidth="20.0" />
-                        <TextField prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
+                        <TextField fx:id="stockpaidField" prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
                         <Label text="Stock Amount" />
                         <Region prefHeight="30.0" prefWidth="13.0" />
-                        <TextField prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
+                        <TextField fx:id="stockamountField" prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label text="Amount Paid" />
                         <Region prefHeight="30.0" prefWidth="20.0" />
-                        <TextField prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
+                        <TextField fx:id="amountField" prefHeight="25.0" prefWidth="126.0" promptText="0.00" />
                      </children>
                   </HBox>
                </children>
