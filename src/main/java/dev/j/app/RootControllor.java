@@ -1,6 +1,5 @@
 package dev.j.app;
 
-
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -10,6 +9,7 @@ import dev.j.App;
 import dev.j.data.MemberDAO;
 import dev.j.enums.CivilStatus;
 import dev.j.models.hr.Member;
+import dev.j.models.hr.Office;
 import dev.sol.core.application.FXController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,8 +37,10 @@ public class RootControllor extends FXController {
     @FXML
     private TableColumn<Member, String> lnameColumn;
 
-    @FXML 
+    @FXML
     private TableColumn<Member, Long> amountpaidColumn;
+    @FXML
+    private TextField idField;
 
     @FXML
     private TextField fnameField;
@@ -49,7 +51,7 @@ public class RootControllor extends FXController {
     @FXML
     private TextField lnameField;
 
-    @FXML 
+    @FXML
     private TextField bdayField;
 
     @FXML
@@ -62,7 +64,7 @@ public class RootControllor extends FXController {
     private TextField occupationField;
 
     @FXML
-    private TextField  salaryField;
+    private TextField salaryField;
 
     @FXML
     private TextField incomeField;
@@ -86,23 +88,16 @@ public class RootControllor extends FXController {
     private TextField dependentField;
 
     @FXML
-    private ComboBox civilBox;
+    private ComboBox<String> civilBox;
 
     @FXML
-    private ComboBox officeComboBox;
-
-
-    @FXML
-    private ComboBox relationBox;
-
-
-
-
-
-
+    private ComboBox<String> officeComboBox;
 
     @FXML
-    private void handleAddMember(){
+    private ComboBox<Member> relationBox;
+
+    @FXML
+    private void handleAddMember() {
         if (fnameField.getText().isEmpty()) {
             fnameField.pseudoClassStateChanged(Styles.STATE_DANGER, true);
             Animations.flash(fnameField).playFromStart();
@@ -130,15 +125,13 @@ public class RootControllor extends FXController {
         reset_newEmployeeFields();
     }
 
-    
-
     @FXML
-    private void handleSave(){
+    private void handleSave() {
 
     }
 
     @FXML
-    private void handledelete(){
+    private void handledelete() {
         Member selectedmember = memberTable.getSelectionModel().getSelectedItem();
         if (selectedmember == null) {
             Alert alert = new Alert(AlertType.ERROR);
@@ -152,6 +145,7 @@ public class RootControllor extends FXController {
         member_masterlist.remove(selectedmember);
         MemberDAO.delete(selectedmember);
     }
+
     private ObservableList<Member> memberList;
     private ObservableList<Member> member_masterlist;
     private Member member;
@@ -163,37 +157,75 @@ public class RootControllor extends FXController {
     protected void load_fields() {
         scene = (Scene) getParameter("SCENE");
         member_masterlist = App.COLLECTIONS_REGISTER.getList("MEMBER");
-      memberList = new FilteredList<>(member_masterlist, p -> true);
+        memberList = new FilteredList<>(member_masterlist, p -> true);
 
         memberIdColumn.setCellValueFactory(cell -> cell.getValue().memberIDProperty().asObject());
         fnameColumn.setCellValueFactory(cell -> cell.getValue().fnameProperty());
         lnameColumn.setCellValueFactory(cell -> cell.getValue().lnameProperty());
         amountpaidColumn.setCellValueFactory(cell -> cell.getValue().amountpaidProperty().asObject());
 
-        memberTable.setItems(member_masterlist);
-    }
+        // ObservableList<CivilStatus> joblist =
+        // FXCollections.observableArrayList(CivilStatus.values());
+        // if (member_masterlist.stream().anyMatch(e ->
+        // e.getStatus().equals(CivilStatus.WIDOW))) {
+        // civilBox.setItems(FXCollections.observableArrayList(joblist.subList(1,
+        // joblist.size())));
 
-    
+        // } else
+        // civilBox.setItems(joblist);
+
+        memberTable.setItems(member_masterlist);
+
+        memberTable.getSelectionModel().selectedItemProperty().addListener((o, ov, nv) -> {
+            if (nv != null) {
+                idField.setText(String.valueOf(nv.getMemberID()));
+                fnameField.setText(nv.getFname());
+                mnameField.setText(nv.getMname());
+                lnameField.setText(nv.getLname());
+                bdayField.setText(nv.getDateofBirth());
+                placeField.setText(nv.getPlaceofBirth());
+                homeField.setText(nv.getCurrentAddress());
+                occupationField.setText(nv.getOccupation());
+
+                civilBox.setItems(FXCollections.observableArrayList());
+
+                CivilStatus status = CivilStatus.fromCode(nv.getStatus());
+
+                civilBox.setValue(status.getDsiplay());
+
+                salaryField.setText(String.valueOf(nv.getSalary()));
+                incomeField.setText(nv.getSourceofincome());
+                relative.setText(nv.getNearestRelative());
+                dependentField.setText(nv.getDependent());
+                stockshareField.setText(String.valueOf(nv.getStockshare()));
+                stockpaidField.setText(String.valueOf(nv.getStockPaid()));
+                stockamountField.setText(String.valueOf(nv.getStockAmount()));
+                amountField.setText(String.valueOf(nv.getAmountPaid()));
+
+            } else {
+                idField.setText("");
+                fnameField.setText("");
+                mnameField.setText("");
+                lnameColumn.setText("");
+                bdayField.setText("");
+                placeField.setText("");
+                homeField.setText("");
+                occupationField.setText("");
+                salaryField.setText("");
+                incomeField.setText("");
+                relative.setText("");
+                dependentField.setText("");
+                stockshareField.setText("");
+                stockpaidField.setText("");
+                stockamountField.setText("");
+                amountField.setText("");
+            }
+        });
+    }
 
     @Override
     protected void load_bindings() {
-        scene = (Scene) getParameter("SCENE");
-        member_masterlist = App.COLLECTIONS_REGISTER.getList("MEMBER");
-        memberFilteredList = new FilteredList<>(member_masterlist, p -> true);
 
-        memberIdColumn.setCellValueFactory(cell -> cell.getValue().memberIDProperty().asObject());
-        lnameColumn.setCellValueFactory(cell -> cell.getValue().lnameProperty());
-        fnameColumn.setCellValueFactory(cell -> cell.getValue().fnameProperty());
-        amountpaidColumn.setCellValueFactory(cell -> cell.getValue().amountpaidProperty().asObject());
-
-        ObservableList<CivilStatus> joblist = FXCollections.observableArrayList(CivilStatus.values());
-        if (member_masterlist.stream().anyMatch(e -> e.getStatus().equals(CivilStatus.WIDOW))) {
-            civilBox.setItems(FXCollections.observableArrayList(joblist.subList(1, joblist.size())));
-
-        } else
-            civilBox.setItems(joblist);
-
-        memberTable.setItems(member_masterlist);
     }
 
     @Override
@@ -205,26 +237,13 @@ public class RootControllor extends FXController {
 
     }
 
-    public void _bind_labelProperties(){
-        if (member != null) {
-            fnameField.textProperty().bind(member.fnameProperty());
-            lnameField.textProperty().bind(member.lnameProperty());
-            mnameField.textProperty().bind(member.mnameProperty());
-            bdayField.textProperty().bind(member.dateofBirthProperty());
-            placeField.textProperty().bind(member.placeofBirthProperty());
-            homeField.textProperty().bind(member.CurrentAddressProperty());
-            occupationField.textProperty().bind(member.occupationProperty());
-            incomeField.textProperty().bind(member.sourceofincomeProperty());
-            relative.textProperty().bind(member.relationshipProperty());
-            dependentField.textProperty().bind(member.dependentProperty());
-            
+    public void _bind_labelProperties() {
 
-        }
     }
 
     private void reset_newEmployeeFields() {
         fnameField.setText("");
         civilBox.getSelectionModel().selectFirst();
     }
-    
+
 }

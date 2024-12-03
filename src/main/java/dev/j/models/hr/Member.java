@@ -18,7 +18,7 @@ public class Member extends FXModel {
     private final FXStringProperty Lname;
     private final FXStringProperty DateofBirth;
     private final FXStringProperty PlaceofBirth;
-    private final FXObjectProperty<CivilStatus> Status;
+    private final FXIntegerProperty Status;
     private final FXStringProperty CurrentAddress;
     private final FXStringProperty Occupation;
     private final FXIntegerProperty Office;
@@ -38,7 +38,7 @@ public class Member extends FXModel {
             String Lname,
             String DateofBirth,
             String PlaceofBirth,
-            CivilStatus Status,
+            int Status,
             String CurrentAddress,
             String Occupation,
             Integer Office,
@@ -58,7 +58,7 @@ public class Member extends FXModel {
         this.Lname = new FXStringProperty(Lname);
         this.DateofBirth = new FXStringProperty(DateofBirth);
         this.PlaceofBirth = new FXStringProperty(PlaceofBirth);
-        this.Status = new FXObjectProperty<>(Status);
+        this.Status = new FXIntegerProperty(Status);
         this.CurrentAddress = new FXStringProperty(CurrentAddress);
         this.Occupation = new FXStringProperty(Occupation);
         this.Office = new FXIntegerProperty(Office);
@@ -165,15 +165,15 @@ public class Member extends FXModel {
         placeofBirthProperty().set(getDateofBirth());
     }
 
-    public FXObjectProperty<CivilStatus> statusProperty() {
+    public FXIntegerProperty statusProperty() {
         return Status;
     }
 
-    public CivilStatus getStatus() {
+    public int getStatus() {
         return statusProperty().get();
     }
 
-    public void setStatus(CivilStatus Status) {
+    public void setStatus(int Status) {
         statusProperty().set(Status);
     }
 

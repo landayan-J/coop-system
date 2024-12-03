@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.j.app.RootControllor">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.j.app.RootControllor">
    <left>
       <VBox prefHeight="595.0" prefWidth="315.0" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField />
+                  <TextField fx:id="idField" />
                </children>
             </GridPane>
             <Region prefHeight="22.0" prefWidth="315.0" />
@@ -83,7 +83,7 @@
                      <children>
                         <Label text="BirthDate" />
                         <Region prefHeight="30.0" prefWidth="12.0" />
-                        <TextField fx:id="bdayField" prefHeight="25.0" prefWidth="74.0" promptText="Birthdate" />
+                        <TextField fx:id="bdayField" prefHeight="25.0" prefWidth="106.0" promptText="Birthdate" />
                      </children>
                   </HBox>
                   <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Birth Place" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
@@ -92,7 +92,7 @@
                      <children>
                         <Label text="Civil Status" />
                         <Region prefHeight="30.0" prefWidth="14.0" />
-                        <ComboBox fx:id="civilBox" prefHeight="25.0" prefWidth="65.0" promptText="Civil Status" />
+                        <ComboBox fx:id="civilBox" prefHeight="25.0" prefWidth="115.0" />
                      </children>
                   </HBox>
                   <Label text="Home Address" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
@@ -120,7 +120,7 @@
                      <children>
                         <Label text="Office" />
                         <Region prefHeight="30.0" prefWidth="36.0" />
-                        <ComboBox prefHeight="25.0" prefWidth="380.0" promptText="Office" />
+                        <ComboBox fx:id="officeComboBox" prefHeight="25.0" prefWidth="380.0" promptText="Office" />
                      </children>
                   </HBox>
                </children>
@@ -160,7 +160,7 @@
                      <children>
                         <Label text="Relation" />
                         <Region prefHeight="30.0" prefWidth="36.0" />
-                        <ComboBox prefHeight="25.0" prefWidth="129.0" promptText="Spouse" />
+                        <ComboBox fx:id="relationBox" prefHeight="25.0" prefWidth="129.0" promptText="Spouse" />
                      </children>
                   </HBox>
                </children>

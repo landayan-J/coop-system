@@ -32,16 +32,93 @@ public class DeliveryReceipt extends FXModel{
         this.userid);
     }
 
+    public FXStringProperty dridnumProperty(){
+        return dridnum;
+    }
+
+    public String getDridNum(){
+        return dridnumProperty().get();
+    }
+
+    public void setDridNum(String dridnum){
+        dridnumProperty().set(dridnum);
+    }
+
+    public FXObjectProperty<Supplier> supplieridProperty(){
+        return supplierid;
+    }
+
+    public Supplier getSupplierID(){
+        return supplieridProperty().get();
+    }
+
+    public void setSupplierID(Supplier supplierid){
+        supplieridProperty().set(supplierid);
+    } 
+
+    public FXIntegerProperty datadelProperty(){
+        return datedel;
+    }
+
+    public Integer getDataDel(){
+        return datadelProperty().get();
+    }
+
+    public void setDataDel(Integer datadel){
+        datadelProperty().set(datadel);
+    }
+
+    public FXLongProperty totalamtProperty(){
+        return totalamt;
+    }
+
+    public long getTotalAmt(){
+        return totalamtProperty().get();
+    }
+
+    public void setTotalAmt(long totalamt){
+        totalamtProperty().set(totalamt);
+    }
+
+    public FXLongProperty paidamtProperty(){
+        return paidamt;
+    }
+
+    public long getPaidAmt(){
+        return paidamtProperty().get();
+    }
+
+    public void setPaidAmt(long paidamt){
+        paidamtProperty().set(getPaidAmt());
+    }
+
+    public FXObjectProperty<User> useridProperty(){
+        return userid;
+    }
+
+    public User getUserID(){
+        return useridProperty().get();
+    }
+
+    public void setUserID(User userid){
+        useridProperty().set(userid);
+    }
+
     @Override
     public FXModel clone() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clone'");
+       return new DeliveryReceipt(getDridNum(), getSupplierID(), getDataDel(), getTotalAmt(), getPaidAmt(), getUserID());
     }
 
     @Override
     public void copy(FXModel arg0) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'copy'");
+      DeliveryReceipt c = (DeliveryReceipt) arg0;
+
+      setDataDel(c.getDataDel());
+      setDridNum(c.getDridNum());
+      setPaidAmt(c.getPaidAmt());
+      setSupplierID(c.getSupplierID());
+      setTotalAmt(c.getTotalAmt());
+      setUserID(c.getUserID()); 
     }
     
 }
